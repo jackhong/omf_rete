@@ -1,4 +1,6 @@
-# Introduction
+# OMF RETE
+
+## Introduction
 
 This library implements a tuple store with a query and subscribe mechanism.
 A subscribe is effectively a standing query which executes a block whenever
@@ -88,7 +90,7 @@ values across patterns. A binding variable is identified by a symbol with a trai
 <tt>match[bindingName]</tt> (without the '?') returns the value bound to <tt>:fridge?</tt> for this match.
 Obviously <tt>match.tuples[0][:subject]</tt> will return the same value.
 
-# Functions
+## Functions
 
 Pattern matches alone are not always sufficient. For instance, let us assume that we have also stored the age in years
 of each monitored fridge and want to replace each broken one which is older than 10 years. To describe such a filter
@@ -119,7 +121,7 @@ and +false+ for all others. To further simplify this and also reduce the search 
       puts "Replace #{match[:fridge]}"
     end
 
-# Set Operators
+## Set Operators
 
 Let us assume we want the store to not only reflect the current facts but the entire history of a system. We
 can achieve that by adding a timestamp to each fact and never retract facts.
@@ -154,7 +156,7 @@ To find all currently broken fridges we need to bind this to all broken status f
 <b>Design Note:</b> This seems to be a fairly ad-hoc syntax. Is there a better one? This assumes that there is no join
 on any of the bound variables, they are simply keys for the sets. But overloading functionality always adds complexity.
 
-# Negated Conditions
+## Negated Conditions
 
 Now let us consider we know that our fridge is broken and we want to monitor any future status updates.
 There may be many different status types and we are interested in all of them as long as they are
@@ -171,5 +173,5 @@ what should NOT be in the store.
 
 Please note that the above example fails to report when my fridge is reported as broken again.
 
-# Implementation
+## Implementation
 
